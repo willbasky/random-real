@@ -1,29 +1,26 @@
 cabal-version:       2.4
-name:                euterpea-sandbox
+name:                random-real
 version:             0.0.0.0
 synopsis:            See README for more info
 description:
-    See README for more info.
-    See [README.md](https://github.com/willgame/euterpea-sandbox#euterpea-sandbox) for more details.
-homepage:            https://github.com/willgame/euterpea-sandbox
-bug-reports:         https://github.com/willgame/euterpea-sandbox/issues
+    Randomizer based on audio data comsumed from microphone
+homepage:            https://github.com/willgame/random-real
+bug-reports:         https://github.com/willgame/random-real/issues
 license:             Apache-2.0
 license-file:        LICENSE
 author:              Vladislav Sabanov
-maintainer:          Vladislav Sabanov <vladislav.sabanov@juspay.in>
 copyright:           2021 Vladislav Sabanov
-category:            Music
+category:            Random
 build-type:          Simple
 extra-doc-files:     README.md
                      CHANGELOG.md
-tested-with:         GHC == 8.10.1
 
 source-repository head
   type:                git
-  location:            https://github.com/willgame/euterpea-sandbox.git
+  location:            https://github.com/willgame/random-real.git
 
 common common-options
-  build-depends:       base ^>= 4.14.0.0
+  build-depends:       base >= 4 && < 5
 
   ghc-options:         -Wall
                        -Wcompat
@@ -44,17 +41,54 @@ common common-options
     ghc-options:       -Wunused-packages
 
   default-language:    Haskell2010
+  default-extensions:
+    ConstraintKinds
+    DataKinds
+    DefaultSignatures
+    DeriveFunctor
+    DeriveGeneric
+    DuplicateRecordFields
+    ExplicitNamespaces
+    FlexibleContexts
+    FlexibleInstances
+    FunctionalDependencies
+    GADTs
+    LambdaCase
+    MultiParamTypeClasses
+    MultiWayIf
+    NamedFieldPuns
+    OverloadedStrings
+    ScopedTypeVariables
+    PatternSynonyms
+    PolyKinds
+    RankNTypes
+    RecordWildCards
+    ScopedTypeVariables
 
 library
   import:              common-options
   hs-source-dirs:      src
-  exposed-modules:     EuterpeaSandbox
+  exposed-modules:     RandomReal
+  build-depends:
+                    --    Euterpea
+                    --  , vivid
+                       bytestring
+                     , HCodecs
+                     , array
+                     , random
+                     , process
+                     , uuid
+                     , stm
+                     , text
+                     , async
+                     , directory
+                     , extra
 
-executable euterpea-sandbox
+executable random-real
   import:              common-options
   hs-source-dirs:      app
   main-is:             Main.hs
-  build-depends:       euterpea-sandbox
+  build-depends:       random-real
   ghc-options:         -threaded
                        -rtsopts
                        -with-rtsopts=-N
