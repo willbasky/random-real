@@ -1,0 +1,60 @@
+cabal-version:       2.4
+name:                euterpea-sandbox
+version:             0.0.0.0
+synopsis:            See README for more info
+description:
+    See README for more info.
+    See [README.md](https://github.com/willgame/euterpea-sandbox#euterpea-sandbox) for more details.
+homepage:            https://github.com/willgame/euterpea-sandbox
+bug-reports:         https://github.com/willgame/euterpea-sandbox/issues
+license:             Apache-2.0
+license-file:        LICENSE
+author:              Vladislav Sabanov
+maintainer:          Vladislav Sabanov <vladislav.sabanov@juspay.in>
+copyright:           2021 Vladislav Sabanov
+category:            Music
+build-type:          Simple
+extra-doc-files:     README.md
+                     CHANGELOG.md
+tested-with:         GHC == 8.10.1
+
+source-repository head
+  type:                git
+  location:            https://github.com/willgame/euterpea-sandbox.git
+
+common common-options
+  build-depends:       base ^>= 4.14.0.0
+
+  ghc-options:         -Wall
+                       -Wcompat
+                       -Widentities
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+                       -Wredundant-constraints
+  if impl(ghc >= 8.2)
+    ghc-options:       -fhide-source-paths
+  if impl(ghc >= 8.4)
+    ghc-options:       -Wmissing-export-lists
+                       -Wpartial-fields
+  if impl(ghc >= 8.8)
+    ghc-options:       -Wmissing-deriving-strategies
+                       -fwrite-ide-info
+                       -hiedir=.hie
+  if impl(ghc >= 8.10)
+    ghc-options:       -Wunused-packages
+
+  default-language:    Haskell2010
+
+library
+  import:              common-options
+  hs-source-dirs:      src
+  exposed-modules:     EuterpeaSandbox
+
+executable euterpea-sandbox
+  import:              common-options
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  build-depends:       euterpea-sandbox
+  ghc-options:         -threaded
+                       -rtsopts
+                       -with-rtsopts=-N
