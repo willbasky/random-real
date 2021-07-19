@@ -6,7 +6,7 @@ description:
     Randomizer based on audio data comsumed from microphone
 homepage:            https://github.com/willgame/random-real
 bug-reports:         https://github.com/willgame/random-real/issues
-license:             UNLICENSE
+license:             Unlicense
 license-file:        UNLICENSE
 author:              Vladislav Sabanov
 copyright:           2021 Vladislav Sabanov
