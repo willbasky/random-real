@@ -83,6 +83,9 @@ library
                      , async
                      , directory
                      , extra
+                     , cpuinfo
+                     , cryptonite
+                     , binary
 
 executable random-real
   import:              common-options
